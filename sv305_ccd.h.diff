@@ -1,0 +1,10 @@
+165a166,170
+>         // Cooler Power
+>         INumberVectorProperty CoolerNP;
+>         INumber CoolerN[1];   
+> 
+> 
+181a187,189
+>         
+>         // cooler power
+>         bool readCoolerPower();

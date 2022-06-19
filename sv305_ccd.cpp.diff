@@ -1,0 +1,42 @@
+196a197,200
+>         
+>         // cooler power
+>         defineProperty(&CoolerNP);
+> 
+223a228,231
+>         
+>         // delete cooler power
+>         deleteProperty(&CoolerNP.name);
+> 
+504a513,517
+>         
+> 		// Cooler Power
+> 		IUFillNumber(&CoolerN[0], "CCD_COOLER_VALUE", "Cooling Power (%)", "%.f", 0., 100., 0., 0.);
+> 		IUFillNumberVector(&CoolerNP, CoolerN, 1, getDeviceName(), "CCD_COOLER_POWER", "Cooling Power", MAIN_CONTROL_TAB,
+> 		IP_RO, 60, IPS_IDLE);
+585a599,620
+> bool Sv305CCD::readCoolerPower() 
+> {
+> 
+>     long lValue;
+> 	SVB_BOOL bAuto;
+>     pthread_mutex_lock(&cameraID_mutex);
+> 	    
+>     status = SVBGetControlValue(cameraID, SVB_COOLER_POWER, &lValue, &bAuto);
+> 	if(status != SVB_SUCCESS)
+> 	{
+> 		LOG_ERROR("Error, camera get Cooler Power failed\n");
+>         pthread_mutex_unlock(&cameraID_mutex);
+>         return false;
+> 	}
+> 
+>     CoolerN[0].value = lValue;
+>     IDSetNumber(&CoolerNP, nullptr);
+> 
+>     pthread_mutex_unlock(&cameraID_mutex);
+>     return true;
+> }
+> 
+1169a1205,1206
+>         
+>         readCoolerPower();
