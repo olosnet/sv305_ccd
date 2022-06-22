@@ -6,7 +6,7 @@
 223a228,231
 >         
 >         // delete cooler power
->         deleteProperty(&CoolerNP.name);
+>         deleteProperty(CoolerNP.name);
 > 
 504a513,517
 >         
